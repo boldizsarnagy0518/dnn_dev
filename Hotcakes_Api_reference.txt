@@ -1,0 +1,910 @@
+Hotcakes Commerce REST API Reference
+Base URL: {baseWebSiteUri}/DesktopModules/Hotcakes/API/rest/v1/ Authentication: All requests require an ?key= query parameter with your API key.
+Table of Contents
+· Search Manager · Utilities · Categories · Price Groups · Customer Accounts · Affiliates · Affiliate Referrals · Tax Schedules · Taxes · Vendors · Manufacturers · Product Types · Product Properties · Product Options · Product Variants · Products · Product Relationships · Image Upload Helpers · Product Files · Product Inventory · Product Images · Product Volume Discounts · Product Reviews · Category Product Associations · Orders · Order Transactions · Wish List Items · Catalog Roles · Gift Cards
+
+Search Manager
+Method
+SearchManagerIn dexProduct(prod uctBvin)
+
+HTTP POST
+
+Utilities
+Method
+UtilitiesSlugif y(input)
+
+HTTP POST
+
+Categories
+Method
+CategoriesFindA ll()
+
+HTTP GET
+
+CategoriesFindF orProduct(produ ctBvin)
+CategoriesFind( bvin)
+CategoriesFindB ySlug(slug)
+CategoriesCreat e(item)
+CategoriesUpdat e(item)
+CategoriesDelet e(bvin)
+CategoriesClear All()
+
+GET
+GET GET POST POST DELETE DELETE
+
+Price Groups
+Method PriceGroupsFind All()
+PriceGroupsFind
+
+HTTP GET
+GET
+
+Description
+Manually executes indexing of a product. Useful after updating a product.
+
+Returns bool
+
+Description
+Parses a string and returns a URL-safe slug. No uniqueness guarantee.
+
+Returns string
+
+Description
+Returns all categories sorted as configured in the store admin area.
+Returns all categories that the specified product belongs to.
+
+Returns List<CategorySnaps hotDTO>
+List<CategorySnaps hotDTO>
+
+Returns a single category matching the given ID.
+Returns the category matching the given URL slug.
+Creates a new category and returns the saved object.
+Updates an existing category and returns the updated object.
+Permanently deletes the specified category.
+Deletes all categories in the store. Requires additional API permissions.
+
+CategoryDTO CategoryDTO CategoryDTO CategoryDTO bool bool
+
+Description
+Returns all price groups in the store.
+Returns a specific price group
+
+Returns List<PriceGroupDTO >
+PriceGroupDTO
+
+Method (bvin)
+PriceGroupsCrea te(item)
+PriceGroupsUpda te(item)
+PriceGroupsDele te(bvin)
+
+HTTP POST POST DELETE
+
+Customer Accounts
+
+Method
+
+HTTP
+
+CustomerAccount GET sFindAll()
+
+CustomerAccount GET sCountOfAll()
+
+CustomerAccount sFindAllByPage( pageNumber, pageSize)
+CustomerAccount sFind(bvin)
+CustomerAccount sFindByEmail(em ail)
+CustomerAccount sCreate(item)
+CustomerAccount sUpdate(item)
+CustomerAccount sCreateWithPass word(item, clearpassword)
+CustomerAccount sDelete(bvin)
+
+GET
+GET GET POST POST POST
+DELETE
+
+CustomerAccount DELETE sClearAll()
+
+Description by ID.
+Creates a new price group and returns it.
+Updates an existing price group and returns it.
+Permanently deletes the specified price group.
+
+Returns PriceGroupDTO PriceGroupDTO bool
+
+Description
+Returns all customer accounts in the store.
+Returns the total count of all customer accounts (website users).
+Returns a paged listing of customer accounts.
+
+Returns List<CustomerAccou ntDTO> long
+List<CustomerAccou ntDTO>
+
+Returns a specific customer account by unique ID.
+Returns a customer account by email. Returns the first match if multiple exist.
+Creates a new customer account.
+Updates an existing customer account matched by ID.
+Creates a customer account with a specified password. Password is sent in the URL -- use with caution.
+Permanently deletes the customer account and related data (e.g. wish lists). Soft-delete in the CMS.
+Deletes all customer accounts. Requires additional API permissions.
+
+CustomerAccountDTO CustomerAccountDTO CustomerAccountDTO CustomerAccountDTO CustomerAccountDTO
+bool
+bool
+
+Affiliates
+Method AffiliatesFindA ll()
+AffiliatesFind( id)
+AffiliatesCreat e(item)
+AffiliatesUpdat e(item)
+AffiliatesDelet e(id)
+
+HTTP GET GET POST POST DELETE
+
+Affiliate Referrals
+
+Method
+
+HTTP
+
+AffiliateReferr GET alsFindForAffil
+iate(id)
+
+AffiliateReferr POST alsCreate(item)
+
+Tax Schedules
+Method
+TaxSchedulesFin dAll()
+TaxSchedulesFin d(id)
+TaxSchedulesCre ate(item)
+TaxSchedulesUpd ate(item)
+TaxSchedulesDel ete(id)
+
+HTTP GET GET POST POST DELETE
+
+Taxes
+Method TaxesFindAll()
+
+HTTP GET
+
+TaxesFind(id)
+
+GET
+
+Description
+Returns all affiliates in the store.
+Returns a specific affiliate by ID.
+Creates a new affiliate and returns the saved object.
+Updates an existing affiliate record.
+Permanently deletes the specified affiliate.
+
+Returns List<AffiliateDTO> AffiliateDTO AffiliateDTO AffiliateDTO bool
+
+Description Returns all referrals for a specific affiliate.
+Creates a new referral for the specified affiliate.
+
+Returns List<AffiliateRefe rralDTO>
+AffiliateReferralD TO
+
+Description
+Returns all tax schedules in the store.
+Returns a specific tax schedule by ID.
+Creates a new tax schedule.
+
+Returns List<TaxScheduleDT O> TaxScheduleDTO
+TaxScheduleDTO
+
+Updates an existing tax schedule.
+Permanently deletes the specified tax schedule.
+
+TaxScheduleDTO bool
+
+Description
+Returns all tax zones/records across all tax schedules.
+Returns a specific tax zone by
+
+Returns List<TaxDTO>
+TaxDTO
+
+Method
+
+HTTP
+
+TaxesCreate(ite m)
+TaxesUpdate(ite m)
+TaxesDelete(id)
+
+POST POST DELETE
+
+Vendors
+Method VendorFindAll()
+
+HTTP GET
+
+VendorFind(bvin )
+VendorCreate(it em)
+VendorUpdate(it em)
+VendorDelete(bv in)
+
+GET POST POST DELETE
+
+Manufacturers
+Method ManufacturerFin dAll()
+ManufacturerFin d(bvin)
+ManufacturerCre ate(item)
+ManufacturerUpd ate(item)
+ManufacturerDel ete(bvin)
+
+HTTP GET GET POST POST DELETE
+
+Product Types
+Method
+ProductTypesFin dAll()
+
+HTTP GET
+
+Description ID.
+Creates a new tax zone for use in a tax schedule.
+Updates an existing tax record.
+
+Returns TaxDTO TaxDTO
+
+Permanently deletes the specified tax zone.
+
+bool
+
+Description Returns all vendors in the store. Returns a specific vendor by ID.
+Creates a new vendor to assign to catalog products. Updates an existing vendor record. Permanently deletes the specified vendor.
+
+Returns List<VendorManufac turerDTO>
+VendorManufacturer DTO VendorManufacturer DTO
+VendorManufacturer DTO
+bool
+
+Description
+Returns all manufacturers in the store.
+Returns a specific manufacturer by ID.
+Creates a new manufacturer to assign to catalog products.
+Updates an existing manufacturer record.
+Permanently deletes the specified manufacturer.
+
+Returns List<VendorManufac turerDTO>
+VendorManufacturer DTO
+VendorManufacturer DTO
+VendorManufacturer DTO
+bool
+
+Description
+
+Returns
+
+Returns all product types in the List<ProductTypeDT
+
+store.
+
+O>
+
+Method
+ProductTypesFin d(bvin)
+ProductTypesCre ate(item)
+ProductTypesUpd ate(item)
+ProductTypesDel ete(bvin)
+ProductTypesAdd Property(typeBv in, propertyId, sortOrder)
+ProductTypesRem oveProperty(typ eBvin, propertyId)
+
+HTTP GET POST POST DELETE POST
+DELETE
+
+Product Properties
+
+Method
+
+HTTP
+
+ProductProperti GET esFindAll()
+
+ProductProperti GET esFind(id)
+
+ProductProperti esForProduct(pr oductBvin)
+ProductProperti esCreate(item)
+
+GET POST
+
+ProductProperti esUpdate(item)
+ProductProperti esDelete(id)
+ProductProperti esSetValueForPr oduct(id, productBvin, propertyValue, choiceId)
+
+POST DELETE POST
+
+Description
+Returns a single product type by ID.
+Creates a new product type.
+
+Returns ProductTypeDTO
+ProductTypeDTO
+
+Updates an existing product type.
+Permanently deletes the specified product type.
+Associates a product property with a product type at the given sort position.
+
+ProductTypeDTO bool bool
+
+Removes the association between a product property and a product type.
+
+bool
+
+Description
+Returns all product properties in the store.
+Returns a single product property by ID.
+Returns all product properties for the specified product.
+
+Returns List<ProductProper tyDTO> ProductPropertyDTO
+List<ProductProper tyDTO>
+
+Creates a new product property for use with product types.
+Updates an existing product property.
+Permanently deletes the specified product property.
+Sets the value of a product property for a specific product.
+
+ProductPropertyDTO
+ProductPropertyDTO bool bool
+
+Product Options
+
+Method
+
+HTTP
+
+ProductOptionsF GET indAll()
+
+ProductOptionsF GET indAllByProduct
+Id(productBvin)
+
+ProductOptionsF GET ind(bvin)
+
+ProductOptionsC POST reate(item)
+
+ProductOptionsU POST pdate(item)
+
+ProductOptionsD DELETE elete(bvin)
+
+ProductOptionsA ssignToProduct( newOptionBvin, productBvin, generateVariant s)
+
+POST
+
+ProductOptionsU nassignFromProd uct(optionBvin, productBvin)
+ProductOptionsG enerateAllVaria nts(productBvin )
+
+POST POST
+
+Product Variants
+
+Method
+
+HTTP
+
+ProductVariantU POST pdateSku(data)
+
+ProductVariants GET FindByProduct(p
+roductId)
+
+Description
+Returns all product options across the entire store.
+Returns all product options for the specified product.
+
+Returns List<OptionDTO>
+List<OptionDTO>
+
+Returns a specific product option by ID.
+Creates a new product option in the store.
+Updates an existing product option.
+Permanently deletes the specified product option.
+Assigns a product option to a product. Optionally generates all possible variants. It is recommended to set generateVariants=false and call ProductOptionsGenerateAllV ariants after all options have been added.
+Removes a product option assignment from a product.
+
+OptionDTO OptionDTO OptionDTO bool bool
+bool
+
+Generates all possible variants bool for the specified product based on its options.
+
+Description
+Updates the SKU of an existing product variant.
+Returns all variants for the specified product.
+
+Returns bool
+List<VariantDTO>
+
+Products
+Method
+ProductsFindAll ()
+ProductsFindFor Category(catego ryBvin, pageNumber, pageSize)
+ProductsFindPag e(pageNumber, pageSize)
+ProductsCountOf All()
+ProductsFind(bv in)
+ProductsFindByS ku(sku)
+ProductsBySlug( slug)
+ProductsCreate( item, imageData)
+ProductsUpdate( item)
+ProductsDelete( bvin)
+
+HTTP GET GET
+GET GET GET GET GET POST
+POST DELETE
+
+ProductsClearAl DELETE l(howMany)
+
+Product Relationships
+
+Method
+
+HTTP
+
+ProductRelation GET shipsFind(id)
+
+ProductRelation shipsForProduct (productBvin)
+ProductRelation shipsCreate(ite
+
+GET POST
+
+Description
+Returns all products in the catalog.
+Returns a paged list of products assigned to the specified category.
+
+Returns List<ProductDTO>
+PageOfProducts
+
+Returns a specific page of all products in the store.
+
+PageOfProducts
+
+Returns the total number of products in the catalog.
+Returns a specific product by ID.
+Returns a specific product by its SKU.
+Returns a specific product by its URL slug.
+Creates a new product and optionally uploads its main image.
+Updates an existing product in the catalog.
+Permanently deletes the specified product from the catalog.
+Permanently deletes all products (up to howMany at once).  Requires additional API permissions.
+
+long ProductDTO ProductDTO ProductDTO ProductDTO
+ProductDTO bool
+ClearProductsData
+
+Description
+Returns a specific product relationship by ID.
+Returns all relationships for the specified product.
+
+Returns
+ProductRelationshi pDTO
+List<ProductRelati onshipDTO>
+
+Creates a new product
+
+ProductRelationshi pDTO
+
+Method
+m)
+ProductRelation shipsQuickCreat e(productBvin, otherProductBvi n, isSubstitute)
+ProductRelation shipsUpdate(ite m)
+ProductRelation shipsUnrelate(p roductBvin, otherProductBvi n)
+
+HTTP POST
+POST DELETE
+
+Image Upload Helpers
+
+Method
+
+HTTP
+
+ProductsMainIma geUpload(produc tBvin, fileName, imageData)
+
+POST
+
+CategoriesImage sIconUpload(cat egoryBvin, fileName, imageData)
+
+POST
+
+CategoriesImage sBannerUpload(c ategoryBvin, fileName, imageData)
+
+POST
+
+Product Files
+Method
+ProductFilesFin dForProduct(bvi n)
+ProductFilesFin d(bvin)
+ProductFilesCre ate(item)
+
+HTTP GET
+GET POST
+
+Description relationship.
+Shortcut for creating a product relationship using just product IDs.
+
+Returns bool
+
+Updates an existing product relationship.
+Removes the relationship between two products.
+
+ProductRelationshi pDTO
+bool
+
+Description
+Uploads the main image for a product.
+
+Returns bool
+
+Uploads the icon image for a category.
+
+bool
+
+Uploads the banner image for a bool category.
+
+Description
+Returns all downloadable files associated with a product.
+
+Returns
+List<ProductFileDT O>
+
+Returns a specific product file by ID.
+Creates a new product file
+
+ProductFileDTO ProductFileDTO
+
+Method
+
+HTTP
+
+ProductFilesUpd ate(item)
+ProductFilesDel ete(bvin)
+ProductFilesAdd ToProduct(produ ctBvin, fileBvin, availableMinute s, maxDownloads)
+ProductFilesRem oveFromProduct( productBvin, fileBvin)
+ProductFilesDat aUploadFirstPar t(fileBvin, fileName, description, data)
+ProductFilesDat aUploadAddition alPart(fileBvin , fileName, moreData)
+
+POST DELETE POST
+DELETE POST
+POST
+
+Product Inventory
+
+Method
+
+HTTP
+
+ProductInventor GET yFind(bvin)
+
+ProductInventor yCreate(item)
+ProductInventor yUpdate(item)
+ProductInventor yDelete(bvin)
+ProductInventor yFindAll()
+ProductInventor
+
+POST POST DELETE GET GET
+
+Description record.
+Updates an existing product file record.
+Permanently deletes the specified product file.
+Associates a file with a product, setting download limits.
+
+Returns ProductFileDTO bool bool
+
+Removes a file association from bool a product.
+
+Uploads the first (or only)
+
+bool
+
+chunk of a product file's binary
+
+data.
+
+Uploads an additional chunk of bool a product file's binary data.
+
+Description
+Returns the inventory record for a specific product or variant.
+Creates a new inventory record for a product or variant.
+Updates the inventory levels for a product or variant.
+Permanently deletes the inventory record for a product.
+Returns all inventory records in the store.
+Returns all inventory records
+
+Returns ProductInventoryDT O
+ProductInventoryDT O ProductInventoryDT O bool
+List<ProductInvent oryDTO> List<ProductInvent
+
+Method
+yFindForProduct (productBvin)
+
+HTTP
+
+Product Images
+Method
+ProductImagesFi ndAll()
+ProductImagesFi ndAllByProduct( productBvin)
+ProductImagesFi nd(bvin)
+ProductImagesCr eate(item, data)
+ProductImagesUp date(item)
+ProductImagesDe lete(bvin)
+ProductImagesUp load(productBvi n, imageBvin, fileName, imageData)
+
+HTTP GET GET
+GET POST
+POST DELETE POST
+
+Product Volume Discounts
+
+Method
+
+HTTP
+
+ProductVolumeDi GET scountsFind(bvi
+n)
+
+ProductVolumeDi scountsCreate(i tem)
+
+POST
+
+ProductVolumeDi scountsUpdate(i tem)
+
+POST
+
+ProductVolumeDi scountsDelete(b vin)
+
+DELETE
+
+Description for the specified product.
+
+Returns oryDTO>
+
+Description
+Returns all product images in the store.
+Returns all images for the specified product.
+
+Returns
+List<ProductImageD TO>
+List<ProductImageD TO>
+
+Returns a specific product image by ID.
+Creates a new product image record and optionally uploads the image data.
+Updates an existing product image record.
+Permanently deletes the specified product image.
+Uploads binary image data for an existing product image record.
+
+ProductImageDTO ProductImageDTO
+ProductImageDTO bool bool
+
+Description
+Returns a specific product volume discount by ID.
+
+Returns
+ProductVolumeDisco untDTO
+
+Creates a new product volume ProductVolumeDisco
+
+discount.
+
+untDTO
+
+Updates an existing product volume discount.
+
+ProductVolumeDisco untDTO
+
+Permanently deletes the specified product volume discount.
+
+bool
+
+Product Reviews
+
+Method
+
+HTTP
+
+ProductReviewsF GET indAll()
+
+ProductReviewsB GET yProduct(produc
+tBvin)
+
+ProductReviewsF GET ind(bvin)
+
+ProductReviewsC POST reate(item)
+
+ProductReviewsU POST pdate(item)
+
+ProductReviewsD DELETE elete(bvin)
+
+Description
+Returns all product reviews in the store.
+Returns all reviews for the specified product.
+
+Returns
+List<ProductReview DTO>
+List<ProductReview DTO>
+
+Returns a specific product review by ID.
+Creates a new product review.
+
+ProductReviewDTO ProductReviewDTO
+
+Updates an existing product review.
+Permanently deletes the specified product review.
+
+ProductReviewDTO bool
+
+Category Product Associations
+
+Method
+
+HTTP
+
+CategoryProduct GET AssociationsFin
+d(id)
+
+CategoryProduct AssociationsCre ate(item)
+CategoryProduct AssociationsQui ckCreate(produc tBvin, categoryBvin)
+CategoryProduct AssociationsUpd ate(item)
+CategoryProduct AssociationsUnr elate(productBv in, categoryBvin)
+
+POST POST
+POST DELETE
+
+Description Returns a specific category/product association by ID. Creates a new category/product association.
+Shortcut to associate a product with a category using just their IDs.
+Updates an existing category/product association.
+Permanently removes the association between a product and a category.
+
+Returns CategoryProductAss ociationDTO
+CategoryProductAss ociationDTO bool
+CategoryProductAss ociationDTO bool
+
+Orders
+Method OrdersFindAll()
+
+HTTP GET
+
+Description Returns all orders in the store.
+
+Returns
+List<OrderSnapshot DTO>
+
+Method
+OrdersFind(bvin )
+OrdersCreate(it em, recalculateOrde r)
+OrdersUpdate(it em, recalculateOrde r)
+OrdersDelete(bv in)
+
+HTTP GET POST
+POST
+DELETE
+
+Order Transactions
+
+Method
+
+HTTP
+
+OrderTransactio GET nsFindForOrder( bvin)
+OrderTransactio GET nsFind(id)
+
+OrderTransactio POST nsCreate(item)
+
+OrderTransactio POST nsUpdate(item)
+
+OrderTransactio DELETE nsDelete(id)
+
+Wish List Items
+Method
+WishListItemsFi nd(id)
+WishListItemsFi ndForCustomer(c ustomerId)
+WishListItemsFi ndAll()
+WishListItemsCr eate(item)
+WishListItemsUp date(item)
+
+HTTP GET GET
+GET POST POST
+
+Description
+
+Returns
+
+Returns a specific order by ID. OrderDTO
+
+Creates a new order. Optionally OrderDTO recalculates totals.
+
+Updates an existing order.
+
+OrderDTO
+
+Optionally recalculates totals.
+
+Permanently deletes the specified order.
+
+bool
+
+Description Returns all transactions for a specific order.
+Returns a specific transaction by its GUID. Creates a new transaction for an order. Updates an existing order transaction. Permanently deletes the specified transaction.
+
+Returns List<OrderTransact ionDTO>
+OrderTransactionDT O
+OrderTransactionDT O
+OrderTransactionDT O
+bool
+
+Description
+Returns a specific wish list item by ID.
+Returns all wish list items for the specified customer.
+
+Returns WishListItemDTO
+List<WishListItemD TO>
+
+Returns all wish list items in the store.
+Creates a new wish list item.
+
+List<WishListItemD TO>
+WishListItemDTO
+
+Updates an existing wish list item.
+
+WishListItemDTO
+
+Method
+WishListItemsDe lete(id)
+
+HTTP DELETE
+
+Catalog Roles
+Method
+CatalogRoleFind ByProduct(id)
+
+HTTP GET
+
+CatalogRoleFind GET ByCategory(id)
+
+CatalogRoleFind ByProductType(i d)
+CatalogRoleCrea te(item)
+CatalogRoleDele te(id)
+
+GET
+POST DELETE
+
+Gift Cards
+Method
+GiftCardFindAll ()
+GiftCardFindAll ByPage(pageNumb er, pageSize)
+GiftCardFind(id )
+
+HTTP GET GET
+GET
+
+GiftCardCreate( item)
+GiftCardUpdate( item)
+GiftCardDelete( id)
+GiftCardCountOf All()
+
+POST POST DELETE GET
+
+Description
+Permanently deletes the specified wish list item.
+
+Returns bool
+
+Description
+Returns all catalog roles assigned to the specified product.
+Returns all catalog roles assigned to the specified category.
+Returns all catalog roles assigned to the specified product type.
+Creates a new catalog role assignment.
+Permanently deletes the specified catalog role.
+
+Returns List<CatalogRoleDT O>
+List<CatalogRoleDT O>
+List<CatalogRoleDT O>
+CatalogRoleDTO
+bool
+
+Description Returns all gift cards in the store. Returns a paged list of gift cards.
+Returns a specific gift card by its unique ID (not the card number). Creates a new gift card in the store. Updates an existing gift card.
+Permanently deletes the specified gift card. Returns the total count of gift cards in the store.
+
+Returns List<GiftCardDTO> List<GiftCardDTO>
+GiftCardDTO
+GiftCardDTO GiftCardDTO bool long
+
+
